@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+        <test>111111</test>
+        <hr/>
+        <test>22222</test>
+        <hr/>
+        <test>33333</test>
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    /**
+     *  slot - 分发内容
+     *      插槽
+     *      增加组件的复用性，组件间的耦合度降低
+     */
+    // 0、 确定组件模板
+    // 1、定义组件  ----  组件的首字母必须大写
+    // 3、使用组件 <test></test>
+    var vm = new Vue({
+        el: "#root",
+        components: {  // 2、局部注册组件
+            'test': {
+                // 这里面slot接受的是111   222  333
+                template:`<div>
+                                我是组件
+                                <slot></slot>     
+                            </div>`,
+                        
+                data () {
+                    return {
+                        count: 0
+                    }
+                }
+            }
+        }
+    })
+
+</script>
+</html>

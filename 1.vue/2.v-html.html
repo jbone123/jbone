@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+        {{ message }}
+        <!-- v-html作用 -->
+        <!-- <div v-html="message"></div> -->
+        <!-- 调用了3次方法 -->
+        <button @click="reverseMsg()">反转</button>
+        <button @click="reverseMsg()">反转</button>
+        <button @click="reverseMsg()">反转</button>
+        <!-- <hr/>
+        {{ message.split('').reverse().join('-')}}
+        <hr/>
+        {{ message.split('').reverse().join('-')}}
+        <hr/>
+        {{ message.split('').reverse().join('-')}}
+        <hr/>
+        {{ message.split('').reverse().join('-')}}
+        <hr/>
+        {{ message.split('').reverse().join('-')}} -->
+        <!-- computed只调用了一次 -->
+        {{reverseMessage}}{{reverseMessage}}{{reverseMessage}}
+        
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            message: "hello vue"
+        },
+        methods: {
+            reverseMsg () {
+                console.log('methods')
+                this.message = this.message.split('').reverse().join('')
+            }
+        },
+        computed: {
+            reverseMessage(){
+                console.log('computed')
+               return  this.message.split('').reverse().join('+')
+            }
+        }
+
+    })
+
+//    function Fn(obj){
+//        this.name = obj.name;
+//        this.age = obj.age;
+//        this.run = function (){
+//            alert(this.name + "今年" + this.age);
+//        }
+//    }
+//    var fn = new Fn({name:"wdx", age:18})
+//    fn.run();
+</script>
+</html>

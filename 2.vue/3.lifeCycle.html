@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>生命周期</title>
+</head>
+<body>
+    <div id="app">
+        {{a}}
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data:{
+                a: "hello"
+            },
+            beforeCreate() {//会最先调用， 这个钩子一般不会做太多功能，地层中可以做一些链
+                console.log(this); //会初始化自己的生命周期，事件方法 $on    $emit 
+            },
+            created(){  //响应式数据变化 观察this.$el
+                console.log(this.$el);  //无法获取真实dom元素
+            },
+            beforeMount() { // 这个方法基本用不到，检测有没有template属性，有的话把这个template渲染成一个render函数
+                console.log('beforeMount');
+            },
+            mounted() {  //这里面可以获取真实dom元素 this.$el
+                this.a = 'jbone'
+                this.$nextTick(()=>{
+                    alert(this.$el.innerHTML) // 只要操作dom就增加$nextTick
+                })
+            },
+            beforeDestroy() {
+                console.log('销毁前');   //一般用来清除定时器   解除绑定的方法事件
+            },
+            destroyed() {
+                console.log('销毁后')    
+            },
+        })
+    </script>
+</body>
+</html>

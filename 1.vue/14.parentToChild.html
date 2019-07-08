@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+        <button @click="count++">点击次数</button>
+        <son :count="count"></son>
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+
+    Vue.component('son',{
+        props:{
+            count:{
+                type:Number,
+                
+            }
+        },
+        template:`<div>{{count}}</div>`,
+        
+    })
+    let vm = new Vue({
+        el: "#root",
+        data:{
+            count:0
+        },
+        // 局部组件
+        // components:{'son':{
+        //     template: `<div>我是son</div>`,
+        // }}
+    })
+</script>
+</html>

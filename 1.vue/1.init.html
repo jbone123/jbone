@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='root'>
+        <div v-bind:title="message">鼠标悬停几秒的提示信息</div>
+        <div v-bind:title="message2">鼠标悬停几秒的提示信息</div>
+        <div v-if="flag">如果条件为真我就显示</div>
+        111
+        <ul>
+            <li v-for="item in carlist">
+                {{item.brand}}
+                <ul>
+                    <li  v-for="carItem in item.list">
+                        {{carItem}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(index,item,)"></li>
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#root',
+            data:{
+                message: '页面加载于'+new Date().toLocaleDateString(),
+                message2: '页面加载于'+new Date().toLocaleString(), //
+                flag: false,
+                carlist:[
+                    {
+                        brand: "奥迪",
+                        list: ["A6","R8","Q7"]
+                    },
+                    {
+                        brand: "宝马",
+                        list: ["X6","I8","520"]
+                    }
+                ],
+                user:{
+                    name:'jbone',
+                    age:18
+                }
+            }
+        })
+    </script>
+</body>
+</html>

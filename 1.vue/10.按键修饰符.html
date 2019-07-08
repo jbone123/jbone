@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>阻止冒泡原理</title>
+    <style>
+        .box{
+            width:100px;height: 100px;background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+       <input type="text" name="" id="" @keyup="getData($event)" v-model="msg">
+       <input type="text" name="" id="" @keyup.enter="getData2()" v-model="msg2">
+       <input type="email" name="" id="" multiple />
+       <input type="file" name="" id="" multiple />
+       <select multiple></select>
+       <!-- .lazy 失去焦点时候更新数据  从而提高性能 -->
+       <input type="text" name="" id="" v-model.lazy.trim="lazyData">{{lazyData}}
+       <input type="text" v-model.number="age" type="number">{{age}}
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    /*
+    *
+    *
+    * **/
+    var vm = new Vue({
+        el: "#root",
+        data:{
+            msg:"",
+            msg2:"",
+            lazyData:"",
+            age:""
+        },
+        methods: {
+            getData(event){
+                if(event.keyCode == 13){
+                    console.log(this.msg);
+                }
+            },
+            getData2(){
+                console.log(this.msg2);
+            }
+
+        },
+
+    })
+</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="axios.min.js"></script>
+<script>
+    function getmoviedata() {
+        return axios.get('http://localhost:3000/api/movies');
+    }
+
+    function getcastsdata() {
+        return axios.get('http://localhost:3000/api/casts');
+    }
+
+    axios.all([getmoviedata(), getcastsdata()])
+        .then(axios.spread(function (movie, casts) {
+            // 两个请求现在都执行完成
+            console.log("movie",movie)
+            console.log("casts",casts)
+        }));
+</script>
+</html>

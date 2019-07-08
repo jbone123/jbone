@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>slot</title>
+</head>
+<body>
+    <div id="app">
+       <my-button :info-xxoo="arr" v-slot:default="{v}">
+           <template >    
+               <p>{{v}} slot新写法   template可加可不加</p>
+           </template>
+       </my-button>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('my-button',{
+            props:['infoXxoo'],   // 通过props传递过来数据
+            // 1.通过作用域插槽的方式   2.函数组件
+            template:`<ul>
+                <slot v-for="i in infoXxoo" :v="i"></slot>
+            </ul>`
+        })
+        let vm = new Vue({
+            el: "#app",
+            data:{
+                arr:[1,2,3,4,5],
+            },
+            
+        })
+        //父组件通过属性给子组件传递数据
+    </script>
+</body>
+</html>

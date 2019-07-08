@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>阻止冒泡原理</title>
+    <style>
+        .box{
+            width:100px;height: 100px;background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div class='box' @click="clickBox($event)">
+            <button @click="clickBtn()">点击-event</button>
+        </div>
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    /*推荐使用 v-on:click="fn($event,id)"   方法 fn(even, id){}
+    *.stop   //event.preventDefault() event.stopPropagation()
+    .prevent
+    .capture
+    .self
+    .once
+    .passive
+    */
+    var vm = new Vue({
+        el: "#root",
+        methods: {
+            clickBox(event){
+                if(event.target.tagName != "BUTTON"){    //阻止冒泡简易原理  真实需要循环下面所有的标签
+                    console.log('box');
+                }
+            },
+            clickBtn(){
+                console.log('点击-event');
+            },
+            
+        },
+
+    })
+</script>
+</html>

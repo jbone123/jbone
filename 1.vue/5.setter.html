@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+        <input type="text" v-model="firstName" placeholder="firstName">
+        <input type="text" v-model="lastName" placeholder="lastName">
+        firstName---{{firstName}}
+        <hr />
+        {{fullName}}
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    /*计算属性的setter方法
+    */
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            firstName: "",
+            lastName: ""
+        },
+        computed:{  
+            // fullName(){//默认只显示getter方法
+            //     return this.firstName+this.lastName
+            // }
+            fullName: {  //
+                get(){
+                    return this.firstName+this.lastName
+                },
+                set(val){  //需要在控制台调用验证setter方法vm.fullName ='jj bb'
+                    console.log(val,'val');
+                    var arr = val.split(' ')
+                    this.firstName=arr[0]
+                    this.lastName = arr[1]
+                }
+
+            }
+        }
+
+    })
+</script>
+</html>

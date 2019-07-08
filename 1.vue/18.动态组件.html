@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态组件</title>
+</head>
+<body>
+    <!-- 动态组件的选项卡 -->
+    <div id="root">
+        <button @click="choose='v-a'">Aaa</button>
+        <button @click="choose='v-b'">Bbb</button>
+        <button @click="choose='v-c'">Ccc</button>
+        <component :is="choose"></component>
+    </div>
+</body>
+<template id="aaa">
+    <div>
+        aaa组件 
+    </div>
+</template>
+<template id="bbb">
+    <div>
+        bbb组件 
+    </div>
+</template>
+<template id="ccc">
+    <div>
+        ccc组件
+    </div>
+</template>
+
+<script src="vue.js"></script>
+<script>
+    var Aaa={
+        template: "#aaa"
+    }
+    var Bbb={
+        template: "#bbb"
+    }
+    var Ccc={
+        template: "#ccc"
+    }
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            choose:"v-a"
+        },
+        components: {  //局部注册组件
+            "v-a":Aaa,
+            "v-b":Bbb,
+            "v-c":Ccc 
+        }   
+    })
+        
+
+</script>
+</html>

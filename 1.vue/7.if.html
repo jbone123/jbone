@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div id="root">
+       <button @click="changIndex(0)">000</button>
+       <button @click="changIndex(1)">111</button>
+       <button @click="changIndex(2)">222</button>
+       <template v-if="currentIdex == 0">
+           <div>
+               第0个
+           </div>
+       </template>
+       <template v-else-if="currentIdex == 1">
+            <div>
+                第1个
+            </div>
+        </template>
+        <template v-else="currentIdex == 2">
+            <div>
+                第2个
+            </div>
+        </template>
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    // v-if和template一起使用  用作选项卡
+    
+    var vm = new Vue({
+        el: "#root",
+        data: {
+          currentIdex:0
+        },
+        methods: {
+            changIndex(index){
+                console.log(index,'index');
+                this.currentIdex = index
+            }
+        },
+
+    })
+</script>
+</html>

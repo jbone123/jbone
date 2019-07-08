@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active{
+            color: red;
+        }
+        .test{
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div :class="{active: flag, test:flag}">vue的class的对象写法，使用绑定属性,key表示你定义的一个选择器active，value表示一个Boolean类型，如果为真就生效</div>
+        <div :class="[classStyle1,classStyle2]">33333</div>
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    /*
+    *class语法规则  数组和对象
+    * 对象写法
+    */
+    var vm = new Vue({
+        el: "#root",
+        data: {
+           flag: false,
+           classStyle1:{//把样式写好，通过数组的形式进行调用
+                active: true
+           },
+           classStyle2:{
+                test:false
+           },        
+        },
+
+    })
+</script>
+</html>

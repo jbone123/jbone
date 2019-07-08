@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件对象</title>
+    <style>
+        .box{
+            width:100px;height: 100px;background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div class='box' @click="clickBox">
+            <!-- <button @click.prevent.stop.once.self="fn($event,1)">点击事件</button> -->
+            <button @click="clickBtn($event)">点击-event</button>
+            <button @click.stop="clickBtn2()">点击-stop</button>
+        </div>
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    /*推荐使用 v-on:click="fn($event,id)"   方法 fn(even, id){}
+    *.stop   //event.preventDefault() event.stopPropagation()
+    .prevent
+    .capture
+    .self
+    .once
+    .passive
+    */
+    var vm = new Vue({
+        el: "#root",
+        data: {
+          
+        },
+        methods: {
+            fn(event,a){
+                console.log(event,'event',a,'a');
+            },
+            clickBox(){
+                console.log('box');
+            },
+            clickBtn(event){
+                event.stopPropagation();
+                console.log('点击-event');
+            },
+            clickBtn2(){
+                console.log('点击-stop');
+            }
+        },
+
+    })
+</script>
+</html>

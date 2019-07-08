@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>父子组件传值</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 组件最好这样写，不要写自闭和组件  w3c hr img br可以自闭和 -->
+       <my-button :info="xxx"></my-button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        // 组件类型: 全局组件 局部组件 函数组件  异步组件
+        Vue.component('my-button',{
+            props:['info'],   // 通过props传递过来数据
+            data(){ //组件的数据必须是函数类型
+                return {msg: '点我呀'}// 保证数据互不影响 所以通过一个函数返回一个唯一的对象
+            },
+            template:`<div>{{msg}}---{{info}}</div>`
+        })
+        let vm = new Vue({
+            el: "#app",
+            // data:{
+                
+            // },
+            data(){    // 根实例必须 数据是对象类型，但是自定义的组件必须是函数类型
+                return {xxx:'试试'}
+            }
+        })
+        //父组件通过属性给子组件传递数据
+    </script>
+</body>
+</html>

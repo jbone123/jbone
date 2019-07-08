@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+        <input type="text" v-model="firstName" placeholder="firstName">
+        <input type="text" v-model="lastName" placeholder="lastName">
+        firstName---{{firstName}}
+        <hr />
+        {{fullName}}
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            firstName: "",
+            lastName: "",
+            fullName: "",
+        },
+        watch: { //监听属性是个函数 负责内部改变源数据的值
+            firstName(newVal, oldVal){
+                this.fullName = newVal + this.lastName
+            },
+            lastName(newVal, oldVal){
+                this.fullName = this.firstName+ newVal 
+            }
+        }
+
+    })
+
+//    function Fn(obj){
+//        this.name = obj.name;
+//        this.age = obj.age;
+//        this.run = function (){
+//            alert(this.name + "今年" + this.age);
+//        }
+//    }
+//    var fn = new Fn({name:"wdx", age:18})
+//    fn.run();
+</script>
+</html>

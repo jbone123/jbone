@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>15.childToParentTo</title>
+</head>
+<body>
+    <div id="root">
+        <button @click="count++">点击次数{{count}}--儿子给父亲{{count2}}钱</button>
+        <son :count="count" @to-parent='getMoney'></son>
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    Vue.component('son',{
+        props:{
+            count:{
+                type:Number,
+            }
+        },
+        template:`<p>
+            {{count}}
+            <button @click="giveFather(1000)">儿子给父亲打钱</button>
+            </p>`,
+        methods:{
+            giveFather(val){
+                this.$emit('to-parent',val )
+            }
+        }
+    })
+    let vm = new Vue({
+        el: "#root",
+        data:{
+            count:0,
+            count2:0,
+        },
+        methods: {
+            getMoney(val){
+                this.count2 = val
+            }
+        },
+    })
+
+    // 儿子给父亲传递值，走的是$emit
+</script>
+</html>
