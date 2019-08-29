@@ -9,7 +9,6 @@ export default {
             castslist:[],
             allLoaded: false,
             skipNum: 0,
-
         }
     },
     methods: {
